@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import type { Answer, Comment, QuestionPage } from './types';
 
-// ⚠️ 重要：替换为你部署的 Cloudflare Worker 地址
-const WORKER_URL = "http://localhost:8787";
+const URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [code, setCode] = useState('');
@@ -66,7 +65,7 @@ function App() {
 
   // 调用 Cloudflare Worker
   const callApi = async (endpoint: 'start' | 'next', payload: any) => {
-    const res = await fetch(WORKER_URL, {
+    const res = await fetch(URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ endpoint, payload }),
