@@ -159,7 +159,7 @@ function App() {
               <label className="block text-sm font-medium text-gray-700 mb-1">招待番号 (数字のみ)</label>
               <input
                 type="tel"
-                className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none text-lg tracking-widest"
+                className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none text-lg tracking-widest text-gray-900"
                 placeholder="1234567890123456"
                 value={code}
                 onChange={e => setCode(e.target.value)}
@@ -169,7 +169,7 @@ function App() {
               <label className="block text-sm font-medium text-gray-700 mb-1">合計金額</label>
               <input
                 type="tel"
-                className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none text-lg"
+                className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none text-lg text-gray-900"
                 placeholder="2000"
                 value={price}
                 onChange={e => setPrice(e.target.value)}
