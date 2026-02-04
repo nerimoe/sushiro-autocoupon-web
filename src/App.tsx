@@ -100,7 +100,7 @@ function App() {
       // 2. Loop Next
       while (true) {
         // 延迟 800ms，防止过快
-        await new Promise(r => setTimeout(r, 800));
+        await new Promise(r => setTimeout(r, 400));
 
         const nextPayload = {
           invitation_code: code,
