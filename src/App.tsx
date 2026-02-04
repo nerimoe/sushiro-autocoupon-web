@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import type { Answer, Comment, QuestionPage } from './types';
 
 const URL = import.meta.env.VITE_API_URL;
+const DELAY = import.meta.env.VITE_DELAY;
 
 function App() {
   const [code, setCode] = useState('');
@@ -99,8 +100,7 @@ function App() {
 
       // 2. Loop Next
       while (true) {
-        // 延迟 800ms，防止过快
-        await new Promise(r => setTimeout(r, 400));
+        await new Promise(r => setTimeout(r, DELAY));
 
         const nextPayload = {
           invitation_code: code,
