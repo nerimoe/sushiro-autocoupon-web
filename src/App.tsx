@@ -27,12 +27,18 @@ function App() {
 
   // 处理单个页面的问题逻辑
   const processPage = (page: QuestionPage) => {
-    addLog(`📄 页面: ${page.display_title.substring(0, 10)}...`);
+    // 修复 1：安全处理 display_title 为 null 的情况
+    const title = page.display_title ? page.display_title.substring(0, 10) : '无标题';
+    addLog(`📄 页面: ${title}...`);
 
-    page.mst_questions.forEach((q) => {
+    // 修复 3：添加空数组回退，防止 mst_questions 为 null 或 undefined
+    const questions = page.mst_questions || [];
+
+    questions.forEach((q) => {
       let answer: Answer = {
         mst_question_id: q.id,
-        mst_menu_id: q.mst_menu_id,
+        // 修复 2：使用 ?? null，确保没有该字段时序列化为 null，而不是 undefined 被丢弃
+        mst_menu_id: q.mst_menu_id ?? null,
         answered_option_no: "",
       };
 
@@ -53,7 +59,8 @@ function App() {
           const text = "特にありません";
           commentsRef.current.push({
             mst_question_id: q.id,
-            mst_menu_id: q.mst_menu_id,
+            // 修复 2：同理，防止 comment 里的 menu_id 被丢弃
+            mst_menu_id: q.mst_menu_id ?? null,
             answered_text: text,
           });
           addLog(`  📝 Q${q.no} [文本]: ${text}`);
